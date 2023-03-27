@@ -1,7 +1,10 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu} = require('electron')
+const {app, BrowserWindow,} = require('electron')
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path')
+
+// Custom modules
+const { initDatabase, insertBackup } = require('./utils/database.js');
 
 function createWindow () {
   // Create the browser window.
@@ -57,8 +60,7 @@ try {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-// create a table and insert a row
-db.serialize(() => {
-  db.run("CREATE TABLE Users (name, lastName)");
-  db.run("INSERT INTO Users VALUES (?, ?)", ['foo', 'bar']);
+app.on('ready', () => {
+  initDatabase();
+  insertBackup('2021-01-01', '12:00:00', '1.5 GB', 'Full', 'C:\\Users\\User\\Desktop\\myeleback.db')
 });
