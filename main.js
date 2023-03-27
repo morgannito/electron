@@ -1,14 +1,15 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu} = require('electron')
+const sqlite3 = require('sqlite3').verbose();
 const path = require('path')
 
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
+    width: 900,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
     }
   })
 
@@ -18,6 +19,15 @@ function createWindow () {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
+
+// Hide the menu bar
+//! commented for development purposes
+// app.whenReady().then(() => {
+//   // Create an empty menu
+//   const menu = Menu.buildFromTemplate([]);
+//   // Set the application menu
+//   Menu.setApplicationMenu(menu);
+// });
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -39,5 +49,16 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
+
+try {
+  require('electron-reloader')(module)
+} catch (_) {}
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// create a table and insert a row
+db.serialize(() => {
+  db.run("CREATE TABLE Users (name, lastName)");
+  db.run("INSERT INTO Users VALUES (?, ?)", ['foo', 'bar']);
+});
