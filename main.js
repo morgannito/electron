@@ -62,5 +62,9 @@ try {
 
 app.on('ready', () => {
   initDatabase();
-  insertBackup('2021-01-01', '12:00:00', '1.5 GB', 'Full', 'C:\\Users\\User\\Desktop\\myeleback.db')
+});
+
+// When the app is about to quit, close the database connection
+app.on('before-quit', () => {
+  closeDatabase();
 });

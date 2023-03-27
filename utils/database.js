@@ -2,9 +2,9 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 // Get the path to the database file
-const dbPath = path.join(__dirname, '../database/myeleback.db');
+const dbPath = path.join(__dirname, 'myeleback.db');
 
-
+// Opens the database and creates the backups table if it doesn't exist
 function initDatabase() {
   // Open a database connection
   const db = new sqlite3.Database(dbPath, (err) => {
@@ -37,26 +37,42 @@ function initDatabase() {
   });
 }
 
+// Function to get all backups from the database
+function getAllBackups(callback) {
+  const sql = `SELECT * FROM backups`;
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+    }
+    callback(rows);
+  });
+}
+
+// Function to insert a new backup into the database
 function insertBackup(date, time, size, type, location) {
-  // Open a database connection
-  const db = new sqlite3.Database(dbPath, (err) => {
+  const sql = `INSERT INTO backups(date, time, size, type, location) VALUES (?, ?, ?, ?, ?)`;
+  const values = [date, time, size, type, location];
+  db.run(sql, values, (err) => {
     if (err) {
       console.error(err.message);
     }
-    console.log('Connected to the database.');
+    console.log(`Inserted backup with ID ${this.lastID}`);
   });
+}
 
-  // Insert a new row into the backups table
-  db.run(`INSERT INTO backups (date, time, size, type, location)
-    VALUES (?, ?, ?, ?, ?)`, [date, time, size, type, location], (err) => {
+// Function to delete a backup from the database
+function deleteBackup(id) {
+  const sql = `DELETE FROM backups WHERE id = ?`;
+  db.run(sql, id, (err) => {
     if (err) {
       console.error(err.message);
-    } else {
-    console.log('A new backup has been added to the database.');
     }
+    console.log(`Deleted backup with ID ${id}`);
   });
+}
 
-  // Close the database connection
+// Function to close the database connection
+function closeDatabase() {
   db.close((err) => {
     if (err) {
       console.error(err.message);
@@ -65,4 +81,5 @@ function insertBackup(date, time, size, type, location) {
   });
 }
 
-module.exports = { initDatabase, insertBackup };
+// Export the database functions for use in other modules
+module.exports = { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase };
