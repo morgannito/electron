@@ -4,17 +4,16 @@ const path = require('path');
 // Get the path to the database file
 const dbPath = path.join(__dirname, 'myeleback.db');
 
-// Opens the database and creates the backups table if it doesn't exist
-function initDatabase() {
-  // Open a database connection
-  const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    console.log('Connected to the database.');
-  });
+// Open a database connection
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the database.');
+});
 
-  // Create the backups table if it doesn't exist
+// Create the backups table if it doesn't exist
+function initDatabase() {
   db.run(`CREATE TABLE IF NOT EXISTS backups (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     date TEXT,
@@ -27,24 +26,17 @@ function initDatabase() {
       console.error(err.message);
     }
   });
-
-  // Close the database connection
-  db.close((err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    console.log('Closed the database connection.');
-  });
 }
 
 // Function to get all backups from the database
 function getAllBackups(callback) {
-  const sql = `SELECT * FROM backups`;
+  const sql = 'SELECT * FROM backups';
   db.all(sql, [], (err, rows) => {
     if (err) {
       console.error(err.message);
     }
-    callback(rows);
+    console.log('in get all');
+    console.log(rows);
   });
 }
 

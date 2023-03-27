@@ -1,10 +1,9 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow,} = require('electron')
-const sqlite3 = require('sqlite3').verbose();
 const path = require('path')
 
 // Custom modules
-const { initDatabase, insertBackup } = require('./utils/database.js');
+const { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase } = require('./utils/database.js');
 
 function createWindow () {
   // Create the browser window.
@@ -13,11 +12,19 @@ function createWindow () {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true
     }
   })
 
   // and load the index.html of the app.
   mainWindow.loadFile('./app/index.html')
+
+  // Fetch all backups from the database and send them to the renderer process
+  getAllBackups((backups) => {
+    win.webContents.send('backups', backups);
+    console.log('Backups:');
+    console.log(backups);
+  });
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -62,6 +69,8 @@ try {
 
 app.on('ready', () => {
   initDatabase();
+  // insertBackup('2022/04/01', '12:34:56', '10 MB', 'database', '/path/to/backup.db');
+  // insertBackup('2022/04/24', '00:00:00', '15 MB', 'asrt', '/path/to/ast.db');
 });
 
 // When the app is about to quit, close the database connection
