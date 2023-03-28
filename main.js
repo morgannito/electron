@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu} = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 // Custom modules
@@ -39,8 +39,6 @@ app.on('browser-window-created', (event, win) => {
 })
 
 // This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
 
@@ -58,21 +56,29 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
-
 try {
   require('electron-reloader')(module)
 } catch (_) {}
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
-
+// database functions
 app.on('ready', () => {
   initDatabase();
-  // insertBackup('2022/04/01', '12:34:56', '10 MB', 'database', '/path/to/backup.db');
-  // insertBackup('2022/04/24', '00:00:00', '15 MB', 'asrt', '/path/to/ast.db');
 });
 
-// When the app is about to quit, close the database connection
 app.on('before-quit', () => {
   closeDatabase();
 });
+
+ipcMain.on('deleteBackup', (event, id) => {
+  // Call the deleteBackup function with the provided ID
+  deleteBackup(id);
+  // Send a confirmation message to the renderer process
+  event.reply('backupDeleted', id);
+});
+
+// ipcMain.on('restoreToBackup', (event, id) => {
+//   // Call the deleteBackup function with the provided ID
+//   restoreToBackup(id);
+//   // Send a confirmation message to the renderer process
+//   event.reply('restoredToBackup', id);
+// });

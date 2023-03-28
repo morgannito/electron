@@ -6,8 +6,20 @@
  * to expose Node.js functionality from the main process.
  */
 
-const { ipcRenderer } = require('electron');
-// const { renderBackups } = require('./assets/js/backups.js');
+const { ipcRenderer } = require('electron')
+
+ipcRenderer.on('renderBackups', (event, backupList) => {
+  renderBackups(backupList);
+});
+
+ipcRenderer.on('backupDeleted', (event, id) => {
+  // Find and remove the row with the corresponding ID
+  const table = document.getElementById('backupTableBody');
+  const row = table.querySelector(`tr[data-id="${id}"]`);
+  if (row) {
+    table.removeChild(row);
+  }
+});
 
 function renderBackups(backupList) {
   console.log('backups received rendering...');
@@ -16,7 +28,7 @@ function renderBackups(backupList) {
     const row = document.createElement('tr');
 
     const idCell = document.createElement('td');
-    idCell.textContent = backup.id;
+    idCell.textContent = "#" + backup.id;
     row.appendChild(idCell);
 
     const dateCell = document.createElement('td');
@@ -36,15 +48,35 @@ function renderBackups(backupList) {
     row.appendChild(typeCell);
 
     const actionCell = document.createElement('td');
-    // Add buttons or links for actions here
+    // Add a Delete button to the action cell
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', () => {
+      // Show a confirmation dialog before deleting the backup data
+      const confirmDelete = confirm('Are you sure you want to delete this backup?');
+      if (confirmDelete) {
+        // Delete the backup data from the database and remove the table row
+        ipcRenderer.send('deleteBackup', backup.id);
+      }
+    });
+    actionCell.appendChild(deleteButton);
+
+    // Add a Restore button to the action cell
+    const restoreButton = document.createElement('button');
+    restoreButton.textContent = 'Restore';
+    // Add an event listener to restore the backup data when the button is clicked
+    restoreButton.addEventListener('click', () => {
+      const confirmRestore = confirm('Are you sure you want to restore to this version?');
+      if (confirmRestore) {
+        ipcRenderer.send('restoreToBackup', backup.id);
+      console.log(`Restoring backup with ID: ${backup.id}`);
+      }
+    });
+
+    actionCell.appendChild(restoreButton);
+
     row.appendChild(actionCell);
 
     table.appendChild(row);
   });
 }
-
-ipcRenderer.on('renderBackups', (event, backupList) => {
-  renderBackups(backupList);
-});
-
-
