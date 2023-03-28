@@ -4,7 +4,6 @@ const path = require('path')
 
 // Custom modules
 const { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase } = require('./utils/database.js');
-const { renderBackups } = require('./renderer.js');
 
 function createWindow () {
   // Create the browser window.
@@ -21,12 +20,10 @@ function createWindow () {
   mainWindow.loadFile('./app/index.html')
 
   // Fetch all backups from the database and send them to the renderer process
-  getAllBackups((backups) => {
-    mainWindow.webContents.send('backups', backups);
+  getAllBackups((backupList) => {
+    mainWindow.webContents.send('renderBackups', backupList);
     console.log('Backups:');
-    console.log(backups);
-
-    renderBackups(backups);
+    console.log(backupList);
   });
 
   // Open the DevTools.
