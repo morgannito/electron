@@ -13,14 +13,32 @@ body {
 }
 
 header {
-	background-color: #333;
+	background-color: #1b1b1d;
 	color: #fff;
 	padding: 10px;
 }
 
-header h1 {
+.header-main {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header h1 a {
+	text-decoration: none;
+	color: #a2ecfb;
+	font-weight: bold;
+	font-size: 30px;
 	margin: 0;
 }
+
+header h1 {
+	color: #a2ecfb;
+	font-weight: bold;
+	font-size: 30px;
+	margin: 0;
+}
+
 
 nav ul {
 	margin: 0;
@@ -34,8 +52,18 @@ nav li {
 }
 
 nav a {
-	color: #fff;
+	font-size: 15px;
+	color: #ccc;
 	text-decoration: none;
+}
+
+.active {
+	font-weight: bold;
+	color: #fff;
+}
+
+nav a:hover {
+	color: #a2ecfb;
 }
 
 main {
@@ -64,21 +92,42 @@ th {
 	background-color: #eee;
 }
 
+th.action {
+	width: 180px;
+}
+
 button {
-	background-color: #333;
+	background-color: #1b1b1d;
 	color: #fff;
 	border: none;
 	padding: 10px 20px;
-	margin-right: 10px;
 	cursor: pointer;
+	font-weight: bold;
+}
+
+button.restore {
+	margin-left: 10px;
 }
 
 button.backup-now {
-	margin-top: 10px;
+	background-color: #36363b;
+	margin-right: 10px;
+}
+
+button.backup-now:hover {
+	color: #a2ecfb;
+}
+
+button.delete:hover {
+	color: #ff3434;
+}
+
+button.restore:hover {
+	color: #4bffb1;
 }
 
 footer {
-	background-color: #333;
+	background-color: #1b1b1d;
 	color: #fff;
 	padding: 6px;
 	text-align: center;
@@ -105,3 +154,5 @@ footer {
     background-color: #5d5d5d;
     border-radius: 3px;
 }
+
+

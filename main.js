@@ -29,6 +29,22 @@ function createWindow () {
     });
   });
 
+  ipcMain.on('change-page', (event, page) => {
+    switch (page) {
+      case 'backups':
+        mainWindow.loadFile('app/index.html');
+        break;
+      case 'home':
+        mainWindow.loadFile('app/index.html');
+        break;
+      case 'settings':
+        mainWindow.loadFile('app/settings.html');
+        break;
+      default:
+        break;
+    }
+  });
+
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }

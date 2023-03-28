@@ -9,20 +9,21 @@
   </head>
   <body>
     <header>
-      <h1>MyEleBack</h1>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Backups</a></li>
-          <li><a href="#">Settings</a></li>
-        </ul>
-      </nav>
+      <div class="header-main">
+        <h1><a href="#" id="home-link">MyEleBack</a></h1>
+        <nav>
+          <ul>
+            <li><a href="#" class="active" id="backups-link">Backups</a></li>
+            <li><a href="#" id="settings-link">Settings</a></li>
+          </ul>
+        </nav>
+        <button class="backup-now">Backup Now</button>
+      </div>
     </header>
 
     <main>
       <h2>Welcome to MyEleBack</h2>
       <p>Here you can view and manage your MySQL backups.</p>
-      <button class="backup-now">Backup Now</button>
       <section class="backups">
         <h3>Backups</h3>
         <table>
@@ -33,7 +34,7 @@
               <th>Time (24h)</th>
               <th>Size</th>
               <th>Type</th>
-              <th>Action</th>
+              <th class="action">Action</th>
             </tr>
           </thead>
           <tbody id="backupTableBody">

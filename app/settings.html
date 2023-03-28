@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="../assets/css/styles.css" rel="stylesheet">
+    <title>MyEleBack</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-main">
+        <h1><a href="#" id="home-link">MyEleBack</a></h1>
+        <nav>
+          <ul>
+            <li><a href="#" id="backups-link">Backups</a></li>
+            <li><a href="#" class="active" id="settings-link">Settings</a></li>
+          </ul>
+        </nav>
+        <button class="backup-now">Backup Now</button>
+      </div>
+    </header>
+
+    <main>
+      <h2>Settings</h2>
+      <p>Here you change the settings of the program.</p>
+      <section class="settings">
+        <h3>Backup Location</h3>
+        <label for="backup-location">Choose where to store your backup:</label>
+        <input type="text" id="backup-location" name="backup-location">
+
+        <h3>Backup Type</h3>
+        <label for="backup-location">Choose backup Type:</label>
+        <input type="text" id="backup-location" name="backup-location">
+
+        <h3>Backup Frequency</h3>
+        <label for="backup-frequency">Choose backup frequency:</label>
+        <select id="backup-frequency" name="backup-frequency">
+          <option value="daily">Daily</option>
+          <option value="daily">BiDaily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+
+        <h3>Backup Time</h3>
+        <label for="backup-time">Choose backup time:</label>
+        <input type="time" id="backup-time" name="backup-time">
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 MyEleBack, by TheTreeSee & Morgannito</p>
+    </footer>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="../settingsRenderer.js"></script>
+  </body>
+</html>

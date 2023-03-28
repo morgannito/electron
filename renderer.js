@@ -8,6 +8,26 @@
 
 const { ipcRenderer } = require('electron')
 
+const settingsLink = document.getElementById('settings-link');
+settingsLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  ipcRenderer.send('change-page', 'settings');
+});
+
+const backupLink = document.getElementById('backups-link');
+backupLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  ipcRenderer.send('change-page', 'backups');
+});
+
+const homeLink = document.getElementById('home-link');
+homeLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  ipcRenderer.send('change-page', 'home');
+});
+
+
+
 ipcRenderer.on('renderBackups', (event, backupList) => {
   renderBackups(backupList);
 });
@@ -51,6 +71,7 @@ function renderBackups(backupList) {
     // Add a Delete button to the action cell
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete';
     deleteButton.addEventListener('click', () => {
       // Show a confirmation dialog before deleting the backup data
       const confirmDelete = confirm('Are you sure you want to delete this backup?');
@@ -64,6 +85,8 @@ function renderBackups(backupList) {
     // Add a Restore button to the action cell
     const restoreButton = document.createElement('button');
     restoreButton.textContent = 'Restore';
+    restoreButton.className = 'restore';
+
     // Add an event listener to restore the backup data when the button is clicked
     restoreButton.addEventListener('click', () => {
       const confirmRestore = confirm('Are you sure you want to restore to this version?');
