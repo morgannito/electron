@@ -12,19 +12,24 @@ function createWindow () {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true
+      contextIsolation: false,
+      nodeIntegration: true,
     }
   })
 
   // and load the index.html of the app.
   mainWindow.loadFile('./app/index.html')
 
+
+  // when the window is ready to show, send the renderBackups event
+mainWindow.once('ready-to-show', () => {
   // Fetch all backups from the database and send them to the renderer process
   getAllBackups((backupList) => {
     mainWindow.webContents.send('renderBackups', backupList);
-    console.log('Backups:');
-    console.log(backupList);
+    console.log('sent renderBackups');
   });
+});
+
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

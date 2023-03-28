@@ -7,9 +7,48 @@
  */
 
 const { ipcRenderer } = require('electron');
-const { renderBackups } = require('./assets/js/backups.js');
+// const { renderBackups } = require('./assets/js/backups.js');
+
+function renderBackups(backupList) {
+  const table = document.getElementById('backupTableBody');
+  console.log('backupjs func called');
+  backupList.forEach((backup) => {
+    const row = document.createElement('tr');
+
+    const idCell = document.createElement('td');
+    idCell.textContent = backup.id;
+    row.appendChild(idCell);
+
+    const dateCell = document.createElement('td');
+    dateCell.textContent = backup.date;
+    row.appendChild(dateCell);
+
+    const timeCell = document.createElement('td');
+    timeCell.textContent = backup.time;
+    row.appendChild(timeCell);
+
+    const sizeCell = document.createElement('td');
+    sizeCell.textContent = backup.size;
+    row.appendChild(sizeCell);
+
+    const typeCell = document.createElement('td');
+    typeCell.textContent = backup.type;
+    row.appendChild(typeCell);
+
+    const actionCell = document.createElement('td');
+    // Add buttons or links for actions here
+    row.appendChild(actionCell);
+
+    table.appendChild(row);
+  });
+}
+
+console.log('renderer.js called');
+
 
 ipcRenderer.on('renderBackups', (event, backupList) => {
-  console.log('in renderer');
+  console.log('received renderBackups');
   renderBackups(backupList);
 });
+
+

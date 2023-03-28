@@ -1,6 +1,6 @@
 function renderBackups(backupList) {
-    const table = document.getElementById('backupTable');
-
+    const table = document.getElementById('backupTableBody');
+    console.log('backupjs called');
     backupList.forEach((backup) => {
       const row = document.createElement('tr');
 

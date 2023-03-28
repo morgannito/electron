@@ -30,7 +30,7 @@ function initDatabase() {
 
 // Function to get all backups from the database
 function getAllBackups(callback) {
-  const sql = 'SELECT * FROM backups';
+  const sql = 'SELECT * FROM backups ORDER BY id DESC';
   db.all(sql, [], (err, backupList) => {
     if (err) {
       console.error(err.message);
