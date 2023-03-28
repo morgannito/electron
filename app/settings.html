@@ -25,26 +25,63 @@
       <h2>Settings</h2>
       <p>Here you change the settings of the program.</p>
       <section class="settings">
-        <h3>Backup Location</h3>
-        <label for="backup-location">Choose where to store your backup:</label>
-        <input type="text" id="backup-location" name="backup-location">
-
-        <h3>Backup Type</h3>
-        <label for="backup-location">Choose backup Type:</label>
-        <input type="text" id="backup-location" name="backup-location">
-
-        <h3>Backup Frequency</h3>
-        <label for="backup-frequency">Choose backup frequency:</label>
-        <select id="backup-frequency" name="backup-frequency">
-          <option value="daily">Daily</option>
-          <option value="daily">BiDaily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
-        </select>
-
-        <h3>Backup Time</h3>
-        <label for="backup-time">Choose backup time:</label>
-        <input type="time" id="backup-time" name="backup-time">
+        <form>
+          <h3>Program Settings</h3>
+          <div>
+            <label for="location">Backup Location:</label>
+            <input type="text" id="location" name="location" value="${settings.location}">
+          </div>
+          <div>
+            <label for="frequency">Backup Frequency:</label>
+            <select id="frequency" name="frequency">
+              <option value="daily" ${settings.frequency === 'daily' ? 'selected' : ''}>Daily</option>
+              <option value="weekly" ${settings.frequency === 'weekly' ? 'selected' : ''}>Weekly</option>
+              <option value="monthly" ${settings.frequency === 'monthly' ? 'selected' : ''}>Monthly</option>
+            </select>
+          </div>
+          <div>
+            <label for="time">Backup Time:</label>
+            <input type="time" id="time" name="time" value="${settings.time}">
+          </div>
+          <h3>MySQL Settings</h3>
+          <div>
+            <label for="mysqlhost">MySQL Host:</label>
+            <input type="text" id="mysqlhost" name="mysqlhost" value="${settings.mysqlhost}">
+          </div>
+          <div>
+            <label for="mysqlport">MySQL Port:</label>
+            <input type="text" id="mysqlport" name="mysqlport" value="${settings.mysqlport}">
+          </div>
+          <div>
+            <label for="mysqluser">MySQL User:</label>
+            <input type="text" id="mysqluser" name="mysqluser" value="${settings.mysqluser}">
+          </div>
+          <div>
+            <label for="mysqldatabase">MySQL Database:</label>
+            <input type="text" id="mysqldatabase" name="mysqldatabase" value="${settings.mysqldatabase}">
+          </div>
+          <div>
+            <label for="mysqlpassword">MySQL Password:</label>
+            <input type="text" id="mysqlpassword" name="mysqlpassword" value="${settings.mysqlpassword}">
+          </div>
+          <h3>FTP Settings</h3>
+          <div>
+            <label for="ftphost">FTP Host:</label>
+            <input type="text" id="ftphost" name="ftphost" value="${settings.ftphost}">
+          </div>
+          <div>
+            <label for="ftpport">FTP Port:</label>
+            <input type="text" id="ftpport" name="ftpport" value="${settings.ftpport}">
+          </div>
+          <div>
+            <label for="ftpuser">FTP User:</label>
+            <input type="text" id="ftpuser" name="ftpuser" value="${settings.ftpuser}">
+          </div>
+          <div>
+            <label for="ftppassword">FTP Password:</label>
+            <input type="text" id="ftppassword" name="ftppassword" value="${settings.ftppassword}">
+          </div>
+        </form>
       </section>
     </main>
 

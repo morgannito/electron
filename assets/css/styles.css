@@ -155,4 +155,60 @@ footer {
     border-radius: 3px;
 }
 
-
+/* css for settings section */
+.settings {
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #f7f7f7;
+  }
+  
+  .settings h3 {
+	margin-top: 30px;
+	margin-bottom: 15px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+  }
+  
+  .settings form div {
+	margin-bottom: 10px;
+  }
+  
+  .settings form label {
+	display: inline-block;
+	width: 150px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 5px;
+  }
+  
+  .settings form input[type=text],
+  .settings form select {
+	width: 300px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	font-size: 16px;
+	color: #333;
+  }
+  
+  .settings form input[type=time] {
+	width: 100px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	font-size: 16px;
+	color: #333;
+  }
+  
+  .settings form select option[selected] {
+	font-weight: bold;
+  }
+  
+  #frequency {
+	width: 312px;
+  }
