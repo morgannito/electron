@@ -22,27 +22,21 @@ function createWindow () {
 
 
   // when the window is ready to show, send the renderBackups event
-mainWindow.once('ready-to-show', () => {
-  // Fetch all backups from the database and send them to the renderer process
-  getAllBackups((backupList) => {
-    mainWindow.webContents.send('renderBackups', backupList);
-    console.log('sent renderBackups');
+  mainWindow.webContents.on('did-finish-load', () => {
+    // Fetch all backups from the database and send them to the renderer process
+    getAllBackups((backupList) => {
+      mainWindow.webContents.send('renderBackups', backupList);
+    });
   });
-});
-
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
 
 // Hide the menu bar
-//! commented for development purposes
-// app.whenReady().then(() => {
-//   // Create an empty menu
-//   const menu = Menu.buildFromTemplate([]);
-//   // Set the application menu
-//   Menu.setApplicationMenu(menu);
-// });
+app.on('browser-window-created', (event, win) => {
+  win.setAutoHideMenuBar(true)
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

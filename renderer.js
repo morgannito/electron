@@ -10,8 +10,8 @@ const { ipcRenderer } = require('electron');
 // const { renderBackups } = require('./assets/js/backups.js');
 
 function renderBackups(backupList) {
+  console.log('backups received rendering...');
   const table = document.getElementById('backupTableBody');
-  console.log('backupjs func called');
   backupList.forEach((backup) => {
     const row = document.createElement('tr');
 
@@ -43,11 +43,7 @@ function renderBackups(backupList) {
   });
 }
 
-console.log('renderer.js called');
-
-
 ipcRenderer.on('renderBackups', (event, backupList) => {
-  console.log('received renderBackups');
   renderBackups(backupList);
 });
 
