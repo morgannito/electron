@@ -50,49 +50,5 @@
 
     <!-- You can also require other files to run in this process -->
     <script src="../renderer.js"></script>
-    <script>
-    const sqlite3 = require('sqlite3').verbose();
-
-    const db = new sqlite3.Database('path/to/database.db', (err) => {
-      if (err) {
-      console.error(err.message);
-      }
-      console.log('Connected to the database.');
-    });
-
-    const sql = 'SELECT * FROM my_table';
-
-    db.all(sql, [], (err, rows) => {
-      if (err) {
-        console.error(err.message);
-      }
-      console.log(rows);
-
-      const table = document.getElementById('table-body');
-
-      rows.forEach((row) => {
-        const tr = document.createElement('tr');
-        const tdId = document.createElement('td');
-        tdId.textContent = row.id;
-        tr.appendChild(tdId);
-        const tdDate = document.createElement('td');
-        tdDate.textContent = row.date;
-        tr.appendChild(tdDate);
-        const tdTime = document.createElement('td');
-        tdTime.textContent = row.time;
-        tr.appendChild(tdTime);
-        const tdSize = document.createElement('td');
-        tdSize.textContent = row.size;
-        tr.appendChild(tdSize);
-        const tdType = document.createElement('td');
-        tdType.textContent = row.type;
-        tr.appendChild(tdType);
-        const tdLocation = document.createElement('td');
-        tdLocation.textContent = row.location;
-        tr.appendChild(tdLocation);
-        table.appendChild(tr);
-      });
-    });
-    </script>
   </body>
 </html>

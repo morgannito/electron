@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 // Get the path to the database file
-const dbPath = path.join(__dirname, 'myeleback.db');
+const dbPath = path.join(__dirname, '../database/myeleback.db');
 
 // Open a database connection
 const db = new sqlite3.Database(dbPath, (err) => {
@@ -31,12 +31,12 @@ function initDatabase() {
 // Function to get all backups from the database
 function getAllBackups(callback) {
   const sql = 'SELECT * FROM backups';
-  db.all(sql, [], (err, rows) => {
+  db.all(sql, [], (err, backupList) => {
     if (err) {
       console.error(err.message);
+    } else {
+      callback(backupList);
     }
-    console.log('in get all');
-    console.log(rows);
   });
 }
 

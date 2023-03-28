@@ -1,9 +1,10 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow,} = require('electron')
+const {app, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 
 // Custom modules
 const { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase } = require('./utils/database.js');
+const { renderBackups } = require('./renderer.js');
 
 function createWindow () {
   // Create the browser window.
@@ -21,9 +22,11 @@ function createWindow () {
 
   // Fetch all backups from the database and send them to the renderer process
   getAllBackups((backups) => {
-    win.webContents.send('backups', backups);
+    mainWindow.webContents.send('backups', backups);
     console.log('Backups:');
     console.log(backups);
+
+    renderBackups(backups);
   });
 
   // Open the DevTools.
