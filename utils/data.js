@@ -1,8 +1,10 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 
 // Get the path to the database file
 const dbPath = path.join(__dirname, '../data/myeleback.db');
+const settingsPath = path.join(__dirname, '../data/settings.json');
 
 // Open a database connection
 const db = new sqlite3.Database(dbPath, (err) => {
@@ -26,6 +28,33 @@ function initDatabase() {
       console.error(err.message);
     }
   });
+}
+
+// check if the settings.json file exists and if not create it
+function initSettings() {
+  if (!fs.existsSync(settingsPath)) {
+    console.log('settings.json file does not exist, creating it now...');
+    fs.writeFile(settingsPath, JSON.stringify({
+      "location":"",
+      "frequency":"",
+      "time":"",
+      "mysqlhost":"",
+      "mysqlport":"",
+      "mysqluser":"",
+      "mysqldatabase":"",
+      "mysqlpassword":"",
+      "ftphost":"",
+      "ftpport":"",
+      "ftpuser":"",
+      "ftppassword":"",
+    }), (err) => {
+      if (err) {
+        console.error(err.message);
+      }
+    });
+  } else {
+    console.log('settings.json file exists.');
+  }
 }
 
 // Function to get all backups from the database
@@ -76,4 +105,4 @@ function closeDatabase() {
 
 
 // Export the database functions for use in other modules
-module.exports = { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase, };
+module.exports = { initDatabase, initSettings, getAllBackups, insertBackup, deleteBackup, closeDatabase, };

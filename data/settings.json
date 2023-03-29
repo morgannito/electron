@@ -1,1 +1,1 @@
-{"location":"/backup/","frequency":"bidaily","time":"12:00","mysqlhost":"localhost","mysqlport":"5000","mysqluser":"root","mysqldatabase":"main","mysqlpassword":"toor","ftphost":"localhost","ftpport":"5050","ftpuser":"root","ftppassword":"toor"}
+{"location":"/","frequency":"bidaily","time":"00:00","mysqlhost":"localhost","mysqlport":"5000","mysqluser":"admin","mysqldatabase":"main","mysqlpassword":"toto","ftphost":"localhost","ftpport":"5050","ftpuser":"admin","ftppassword":"toto"}

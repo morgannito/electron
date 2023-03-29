@@ -4,18 +4,19 @@ const path = require('path')
 const fs = require('fs');
 
 // Custom modules
-const { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase, } = require('./utils/data.js');
+const { initDatabase, initSettings, getAllBackups, insertBackup, deleteBackup, closeDatabase, } = require('./utils/data.js');
 
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 600,
+    resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: false,
       nodeIntegration: true,
-    }
+    },
   })
 
   // and load the index.html of the app.
@@ -53,6 +54,7 @@ function createWindow () {
 // Hide the menu bar
 app.on('browser-window-created', (event, win) => {
   win.setAutoHideMenuBar(true)
+  win.setMenuBarVisibility(false)
 })
 
 // This method will be called when Electron has finished
@@ -80,6 +82,7 @@ try {
 // database functions
 app.on('ready', () => {
   initDatabase();
+  initSettings();
 });
 
 app.on('before-quit', () => {

@@ -103,3 +103,15 @@ function renderBackups(backupList) {
     table.appendChild(row);
   });
 }
+
+const backupNowButton = document.createElement('button');
+backupNowButton.textContent = 'Backup Now';
+backupNowButton.className = 'backup-now';
+backupNowButton.addEventListener('click', () => {
+  const confirmed = confirm('Are you sure you want to backup your data now?');
+  if (confirmed) {
+    console.log('psudo backup now ..');
+    // ipcRenderer.send('save-settings', newSettings);
+  }
+});
+document.querySelector('div.header-main').appendChild(backupNowButton);
