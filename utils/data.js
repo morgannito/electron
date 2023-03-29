@@ -6,6 +6,11 @@ const fs = require('fs');
 const dbPath = path.join(__dirname, '../data/myeleback.db');
 const settingsPath = path.join(__dirname, '../data/settings.json');
 
+if (!fs.existsSync('./data')){
+  console.log("data directory not found, creating..");
+  fs.mkdirSync('./data');
+}
+
 // Open a database connection
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {

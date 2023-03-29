@@ -81,8 +81,8 @@ try {
 
 // database functions
 app.on('ready', () => {
-  initDatabase();
-  initSettings();
+    initDatabase();
+    initSettings();
 });
 
 app.on('before-quit', () => {
@@ -127,4 +127,4 @@ ipcMain.on('get-settings-data', (event) => {
     // send settings data back to renderer
     event.sender.send('settings-data', settings);
   });
-}); 
+});
