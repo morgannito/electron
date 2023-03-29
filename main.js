@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+const fs = require('fs');
 
 // Custom modules
 const { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase } = require('./utils/database.js');
@@ -98,3 +99,15 @@ ipcMain.on('deleteBackup', (event, id) => {
 //   // Send a confirmation message to the renderer process
 //   event.reply('restoredToBackup', id);
 // });
+
+ipcMain.on('save-settings', (event, settingsData) => {
+  // Update the JSON file with the new settings
+  fs.writeFile('./data/settings.json', JSON.stringify(settingsData), (err) => {
+    if (err) {
+      console.error(err);
+      event.reply('save-settings-error', err.message);
+    } else {
+      event.reply('save-settings-success');
+    }
+  });
+});

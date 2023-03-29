@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 // Get the path to the database file
-const dbPath = path.join(__dirname, '../database/myeleback.db');
+const dbPath = path.join(__dirname, '../data/myeleback.db');
 
 // Open a database connection
 const db = new sqlite3.Database(dbPath, (err) => {

@@ -27,10 +27,28 @@ saveChangesButton.addEventListener('click', () => {
     const locationInput = document.getElementById('location');
     const frequencySelect = document.getElementById('frequency');
     const timeInput = document.getElementById('time');
+    const mysqlhostInput = document.getElementById('mysqlhost');
+    const mysqlportInput = document.getElementById('mysqlport');
+    const mysqluserInput = document.getElementById('mysqluser');
+    const mysqldatabaseInput = document.getElementById('mysqldatabase');
+    const mysqlpasswordInput = document.getElementById('mysqlpassword');
+    const ftphostInput = document.getElementById('ftphost');
+    const ftpportInput = document.getElementById('ftpport');
+    const ftpuserInput = document.getElementById('ftpuser');
+    const ftppasswordInput = document.getElementById('ftppassword');
     const newSettings = {
       location: locationInput.value,
       frequency: frequencySelect.value,
-      time: timeInput.value
+      time: timeInput.value,
+      mysqlhost: mysqlhostInput.value,
+      mysqlport: mysqlportInput.value,
+      mysqluser: mysqluserInput.value,
+      mysqldatabase: mysqldatabaseInput.value,
+      mysqlpassword: mysqlpasswordInput.value,
+      ftphost: ftphostInput.value,
+      ftpport: ftpportInput.value,
+      ftpuser: ftpuserInput.value,
+      ftppassword: ftppasswordInput.value,
     };
     // save changes to JSON file using IPC message
     ipcRenderer.send('save-settings', newSettings);
