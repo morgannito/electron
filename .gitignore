@@ -1,2 +1,3 @@
 node_modules
-data
+data/myeleback.db
+data/settings.json
