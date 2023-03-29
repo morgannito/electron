@@ -4,7 +4,7 @@ const path = require('path')
 const fs = require('fs');
 
 // Custom modules
-const { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase } = require('./utils/database.js');
+const { initDatabase, getAllBackups, insertBackup, deleteBackup, closeDatabase, } = require('./utils/data.js');
 
 function createWindow () {
   // Create the browser window.
@@ -111,3 +111,17 @@ ipcMain.on('save-settings', (event, settingsData) => {
     }
   });
 });
+
+ipcMain.on('get-settings-data', (event) => {
+  // read settings data from file
+  fs.readFile('./data/settings.json', 'utf-8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    const settings = JSON.parse(data);
+    // send settings data back to renderer
+    event.sender.send('settings-data', settings);
+  });
+}); 

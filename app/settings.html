@@ -26,7 +26,7 @@
       <p>Here you change the settings of the program.</p>
       <section class="settings">
         <form>
-          <h3>Program Settings</h3>
+          <h3 class="first-element">Program Settings</h3>
           <div>
             <label for="location">Backup Location:</label>
             <input type="text" id="location" name="location" value="${settings.location}">
@@ -35,8 +35,11 @@
             <label for="frequency">Backup Frequency:</label>
             <select id="frequency" name="frequency">
               <option value="daily" ${settings.frequency === 'daily' ? 'selected' : ''}>Daily</option>
+              <option value="bidaily" ${settings.frequency === 'bidaily' ? 'selected' : ''}>BiDaily</option>
               <option value="weekly" ${settings.frequency === 'weekly' ? 'selected' : ''}>Weekly</option>
+              <option value="biweekly" ${settings.frequency === 'biweekly' ? 'selected' : ''}>BiWeekly</option>
               <option value="monthly" ${settings.frequency === 'monthly' ? 'selected' : ''}>Monthly</option>
+              <option value="bimonthly" ${settings.frequency === 'bimonthly' ? 'selected' : ''}>BiMonthly</option>
             </select>
           </div>
           <div>

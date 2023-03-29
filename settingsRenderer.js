@@ -18,6 +18,26 @@ homeLink.addEventListener('click', (event) => {
   ipcRenderer.send('change-page', 'home');
 });
 
+// send request to get settings data
+ipcRenderer.send('get-settings-data');
+
+// handle response with settings data
+ipcRenderer.on('settings-data', (event, settings) => {
+  // set the default values in the form inputs
+  document.querySelector('#location').value = settings.location;
+  document.querySelector('#frequency').value = settings.frequency;
+  document.querySelector('#time').value = settings.time;
+  document.querySelector('#mysqlhost').value = settings.mysqlhost;
+  document.querySelector('#mysqlport').value = settings.mysqlport;
+  document.querySelector('#mysqluser').value = settings.mysqluser;
+  document.querySelector('#mysqldatabase').value = settings.mysqldatabase;
+  document.querySelector('#mysqlpassword').value = settings.mysqlpassword;
+  document.querySelector('#ftphost').value = settings.ftphost;
+  document.querySelector('#ftpport').value = settings.ftpport;
+  document.querySelector('#ftpuser').value = settings.ftpuser;
+  document.querySelector('#ftppassword').value = settings.ftppassword;
+});
+
 
 const saveChangesButton = document.createElement('button');
 saveChangesButton.textContent = 'Save Changes';
@@ -54,4 +74,4 @@ saveChangesButton.addEventListener('click', () => {
     ipcRenderer.send('save-settings', newSettings);
   }
 });
-document.querySelector('main').appendChild(saveChangesButton);
+document.querySelector('form').appendChild(saveChangesButton);
