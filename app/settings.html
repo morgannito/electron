@@ -17,7 +17,10 @@
             <li><a href="#" class="active" id="settings-link">Settings</a></li>
           </ul>
         </nav>
-        <button class="backup-now">Backup Now</button>
+        <div class="button-boy">
+          <div class="loading-icon"></div>
+          <!-- a backup button will be appended here -->
+        </div>
       </div>
     </header>
 
@@ -60,10 +63,6 @@
             <input type="text" id="mysqluser" name="mysqluser" value="${settings.mysqluser}">
           </div>
           <div>
-            <label for="mysqldatabase">MySQL Database:</label>
-            <input type="text" id="mysqldatabase" name="mysqldatabase" value="${settings.mysqldatabase}">
-          </div>
-          <div>
             <label for="mysqlpassword">MySQL Password:</label>
             <input type="text" id="mysqlpassword" name="mysqlpassword" value="${settings.mysqlpassword}">
           </div>
@@ -93,6 +92,7 @@
     </footer>
 
     <!-- You can also require other files to run in this process -->
+    <script src="../renderer.js"></script>
     <script src="../settingsRenderer.js"></script>
   </body>
 </html>

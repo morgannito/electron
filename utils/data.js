@@ -46,7 +46,6 @@ function initSettings() {
       "mysqlhost":"",
       "mysqlport":"",
       "mysqluser":"",
-      "mysqldatabase":"",
       "mysqlpassword":"",
       "ftphost":"",
       "ftpport":"",

@@ -113,6 +113,7 @@ button.restore {
 button.backup-now {
 	background-color: #36363b;
 	margin-right: 10px;
+	margin-left: auto;
 }
 
 button.backup-now:hover {
@@ -216,5 +217,40 @@ footer {
 
 #frequency {
 	width: 312px;
+}
+
+.header-main {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.button-boy {
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: 170px;
+}
+
+.loading-icon {
+	border: 4px solid #36363b;
+	border-top: 4px solid #a2ecfb;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	animation: spin 1s linear infinite;
+	margin-right: 10px;
+	display: inline-block;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.loading-icon.visible {
+	opacity: 1;
+}
+
+@keyframes spin {
+	0% { transform: rotate(360deg); }
+	100% { transform: rotate(0deg); }
 }
 

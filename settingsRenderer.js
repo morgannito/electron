@@ -1,22 +1,4 @@
-const { ipcRenderer } = require('electron')
-
-const settingsLink = document.getElementById('settings-link');
-settingsLink.addEventListener('click', (event) => {
-  event.preventDefault();
-  ipcRenderer.send('change-page', 'settings');
-});
-
-const backupLink = document.getElementById('backups-link');
-backupLink.addEventListener('click', (event) => {
-  event.preventDefault();
-  ipcRenderer.send('change-page', 'backups');
-});
-
-const homeLink = document.getElementById('home-link');
-homeLink.addEventListener('click', (event) => {
-  event.preventDefault();
-  ipcRenderer.send('change-page', 'home');
-});
+// const { ipcRenderer } = require('electron')
 
 // send request to get settings data
 ipcRenderer.send('get-settings-data');
@@ -30,7 +12,6 @@ ipcRenderer.on('settings-data', (event, settings) => {
   document.querySelector('#mysqlhost').value = settings.mysqlhost;
   document.querySelector('#mysqlport').value = settings.mysqlport;
   document.querySelector('#mysqluser').value = settings.mysqluser;
-  document.querySelector('#mysqldatabase').value = settings.mysqldatabase;
   document.querySelector('#mysqlpassword').value = settings.mysqlpassword;
   document.querySelector('#ftphost').value = settings.ftphost;
   document.querySelector('#ftpport').value = settings.ftpport;
@@ -50,7 +31,6 @@ saveChangesButton.addEventListener('click', () => {
     const mysqlhostInput = document.getElementById('mysqlhost');
     const mysqlportInput = document.getElementById('mysqlport');
     const mysqluserInput = document.getElementById('mysqluser');
-    const mysqldatabaseInput = document.getElementById('mysqldatabase');
     const mysqlpasswordInput = document.getElementById('mysqlpassword');
     const ftphostInput = document.getElementById('ftphost');
     const ftpportInput = document.getElementById('ftpport');
@@ -63,7 +43,6 @@ saveChangesButton.addEventListener('click', () => {
       mysqlhost: mysqlhostInput.value,
       mysqlport: mysqlportInput.value,
       mysqluser: mysqluserInput.value,
-      mysqldatabase: mysqldatabaseInput.value,
       mysqlpassword: mysqlpasswordInput.value,
       ftphost: ftphostInput.value,
       ftpport: ftpportInput.value,

@@ -103,6 +103,11 @@ ipcMain.on('deleteBackup', (event, id) => {
 //   event.reply('restoredToBackup', id);
 // });
 
+ipcMain.on('backup-now', (event,) => {
+  console.log('backup-now');
+  event.reply('backup-done',);
+});
+
 ipcMain.on('save-settings', (event, settingsData) => {
   // Update the JSON file with the new settings
   fs.writeFile('./data/settings.json', JSON.stringify(settingsData), (err) => {
