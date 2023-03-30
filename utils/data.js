@@ -47,10 +47,12 @@ function initSettings() {
       "mysqlport":"",
       "mysqluser":"",
       "mysqlpassword":"",
+      "mysqlcommand":"",
       "ftphost":"",
       "ftpport":"",
       "ftpuser":"",
       "ftppassword":"",
+      "ftpcommand":"",
     }), (err) => {
       if (err) {
         console.error(err.message);

@@ -49,39 +49,62 @@
             <label for="time">Backup Time:</label>
             <input type="time" id="time" name="time" value="${settings.time}">
           </div>
+
+
+
           <h3>MySQL Settings</h3>
-          <div>
-            <label for="mysqlhost">MySQL Host:</label>
-            <input type="text" id="mysqlhost" name="mysqlhost" value="${settings.mysqlhost}">
+          <div class="mysql-settings ${settings.mysqlcommand ? 'hidden' : ''}">
+            <div>
+              <label for="mysqlhost">MySQL Host:</label>
+              <input type="text" id="mysqlhost" name="mysqlhost" value="${settings.mysqlhost}">
+            </div>
+            <div>
+              <label for="mysqlport">MySQL Port:</label>
+              <input type="text" id="mysqlport" name="mysqlport" value="${settings.mysqlport}">
+            </div>
+            <div>
+              <label for="mysqluser">MySQL User:</label>
+              <input type="text" id="mysqluser" name="mysqluser" value="${settings.mysqluser}">
+            </div>
+            <div>
+              <label for="mysqlpassword">MySQL Password:</label>
+              <input type="text" id="mysqlpassword" name="mysqlpassword" value="${settings.mysqlpassword}">
+            </div>
           </div>
-          <div>
-            <label for="mysqlport">MySQL Port:</label>
-            <input type="text" id="mysqlport" name="mysqlport" value="${settings.mysqlport}">
+          <div class="mysql-command ${!settings.mysqlcommand ? 'hidden' : ''}">
+            <div>
+              <label for="mysqlcommand">MySQL Command:</label>
+              <input type="text" id="mysqlcommand" name="mysqlcommand" value="${settings.mysqlcommand}">
+            </div>
           </div>
-          <div>
-            <label for="mysqluser">MySQL User:</label>
-            <input type="text" id="mysqluser" name="mysqluser" value="${settings.mysqluser}">
-          </div>
-          <div>
-            <label for="mysqlpassword">MySQL Password:</label>
-            <input type="text" id="mysqlpassword" name="mysqlpassword" value="${settings.mysqlpassword}">
-          </div>
+
+
+
+
           <h3>FTP Settings</h3>
-          <div>
-            <label for="ftphost">FTP Host:</label>
-            <input type="text" id="ftphost" name="ftphost" value="${settings.ftphost}">
+          <div class="ftp-settings ${settings.ftpcommand ? 'hidden' : ''}">
+            <div>
+              <label for="ftphost">FTP Host:</label>
+              <input type="text" id="ftphost" name="ftphost" value="${settings.ftphost}">
+            </div>
+            <div>
+              <label for="ftpport">FTP Port:</label>
+              <input type="text" id="ftpport" name="ftpport" value="${settings.ftpport}">
+            </div>
+            <div>
+              <label for="ftpuser">FTP User:</label>
+              <input type="text" id="ftpuser" name="ftpuser" value="${settings.ftpuser}">
+            </div>
+            <div>
+              <label for="ftppassword">FTP Password:</label>
+              <input type="text" id="ftppassword" name="ftppassword" value="${settings.ftppassword}">
+            </div>
           </div>
-          <div>
-            <label for="ftpport">FTP Port:</label>
-            <input type="text" id="ftpport" name="ftpport" value="${settings.ftpport}">
-          </div>
-          <div>
-            <label for="ftpuser">FTP User:</label>
-            <input type="text" id="ftpuser" name="ftpuser" value="${settings.ftpuser}">
-          </div>
-          <div>
-            <label for="ftppassword">FTP Password:</label>
-            <input type="text" id="ftppassword" name="ftppassword" value="${settings.ftppassword}">
+          <div class="mysql-command ${!settings.mysqlcommand ? 'hidden' : ''}">
+            <div>
+              <label for="ftpcommand">FTP Command:</label>
+              <input type="text" id="ftpcommand" name="ftpcommand" value="${settings.ftpcommand}">
+            </div>
           </div>
         </form>
       </section>

@@ -5,6 +5,7 @@ const fs = require('fs');
 
 // Custom modules
 const { initDatabase, initSettings, getAllBackups, insertBackup, deleteBackup, closeDatabase, } = require('./utils/data.js');
+const { backupNow, } = require('./utils/server.js');
 
 function createWindow () {
   // Create the browser window.
@@ -96,16 +97,16 @@ ipcMain.on('deleteBackup', (event, id) => {
   event.reply('backupDeleted', id);
 });
 
-// ipcMain.on('restoreToBackup', (event, id) => {
-//   // Call the deleteBackup function with the provided ID
-//   restoreToBackup(id);
-//   // Send a confirmation message to the renderer process
-//   event.reply('restoredToBackup', id);
-// });
+ipcMain.on('restoreToBackup', (event, id) => {
+  // Call the deleteBackup function with the provided ID
+  restoreToBackup(id);
+  // Send a confirmation message to the renderer process
+  event.reply('restoredToBackup', id);
+});
 
 ipcMain.on('backup-now', (event,) => {
   console.log('backup-now');
-  event.reply('backup-done',);
+  backupNow();
 });
 
 ipcMain.on('save-settings', (event, settingsData) => {

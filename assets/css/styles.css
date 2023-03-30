@@ -190,6 +190,16 @@ footer {
 	margin-bottom: 5px;
 }
 
+.settings form input[type="text"]:focus,
+.settings form select:focus,
+.settings form button:focus,
+.settings form input[type="time"]:focus {
+  outline: none;
+  border-color: #5d5d5d;
+}
+
+
+
 .settings form input[type=text],
 .settings form select {
 	width: 300px;
